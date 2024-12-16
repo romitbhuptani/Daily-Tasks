@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyframe Animations</title>
+    <style>
+       
+
+        .bounce-up {
+            background-color: #ff6347;
+            animation: bounceUp 2s infinite;
+        }
+
+        @keyframes bounceUp {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-50px);
+            }
+            60% {
+                transform: translateY(-25px);
+            }
+        }
+
+        .fade-in {
+            background-color: #32cd32;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .slide-right {
+            background-color: #1e90ff;
+            animation: slideRight 2s ease-in-out infinite;
+        }
+
+        @keyframes slideRight {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="bounce-up">Bounce Up</div>
+        <div class="fade-in">Fade In</div>
+        <div class="slide-right">Slide Right</div>
+    </div>
+</body>
+</html>
