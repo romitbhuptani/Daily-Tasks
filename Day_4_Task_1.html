@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+
+    .background {
+      background: url('C://Users//bhupt//OneDrive//Pictures//img1.jpg') no-repeat center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; 
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      width: 100vw;
+      height: 100vh;
+    }
+
+
+    .circle {
+      width: 80%;
+      height: 80%;
+      background-color: rgba(10, 10, 10, 0.7); 
+      border-radius: 50%; 
+    }
+
+    .grid-cell:hover .circle {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background"></div>
+
+  
+  <div class="grid">
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+    <div class="grid-cell"><div class="circle"></div></div>
+  </div>
+</body>
+</html>

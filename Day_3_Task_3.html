@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="check"></p>
+    <script>
+        function check(str){
+            return str.indexOf("ee")!=-1;
+        }
+        var str = check(prompt("Enter a string"));
+        document.getElementById("check").innerHTML = "The String has ee : " + str;
+        
+    </script>
+    
+</body>
+</html>

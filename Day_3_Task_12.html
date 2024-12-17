@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="factors"></p>
+    <script>
+        function factors(num){
+            arr = [];
+            for(var i=1;i<=num;i++){
+                if(num%i==0){
+                    arr.push(i);
+            }
+        }
+            return arr;
+        }
+        var arr = factors(prompt("Enter a number: "));
+        document.getElementById("factors").innerHTML = "The factors are : "+arr;
+    </script>
+</body>
+</html>

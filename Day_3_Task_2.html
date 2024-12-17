@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="count"></p>
+    <script>
+        function countNum(num){
+            var count = 0;
+            while(num>0){
+                count ++;
+                num = Math.floor(num/10);
+            }
+            return count;
+        }
+        var count = countNum(parseInt(prompt("Enter a number")));
+        document.getElementById("count").innerHTML ="Number of digits in the given number : "  + count.toString();
+    </script>
+    
+</body>
+</html>

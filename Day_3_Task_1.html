@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="change"></p>
+    <script>
+        function add(str){
+            return str + " " + "something";
+        }
+        var str = add(prompt("Enter a string"));
+        document.getElementById("change").innerHTML = "New String : "+str;
+        
+    </script>
+    
+</body>
+</html>

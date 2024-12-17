@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="table"></p>
+    <script>
+        function createTable(num){
+            var str = "<table cellspacing=5 cellpadding=5 rules='all' border='3'>";
+            for(var i=1 ; i<11; i++){
+                str += "<tr><td>" ;
+                    str += `${num} * ${i} = ${num*i}`;
+                    str += "</td></tr>";
+
+            }
+            str += "</table>";
+            return str;
+        }
+        var str = createTable(parseInt(prompt("Enter a number")));
+        document.getElementById("table").innerHTML = str;
+    </script>
+    
+</body>
+</html>

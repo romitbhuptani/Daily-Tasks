@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="remove"></p>
+    <script>
+        function removeZeroes(num){
+            return parseFloat(num);
+        }
+        var num = removeZeroes(prompt("Enter a number : "));
+        document.getElementById("remove").innerHTML = "The number after removing trailing and leading zeroes is : "+num;
+    </script>
+</body>
+</html>

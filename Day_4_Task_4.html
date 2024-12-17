@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="findRem"></p>
+    <script>
+        var currTime = prompt("Enter current time: ");
+        var lunchTime = prompt("Enter lunch time: ");
+        var curr = currTime.split(" ");
+        var lun = lunchTime.split(" ");
+        var curr_time = curr[0].split(":");
+        var lun_time = lun[0].split(":");
+        var curr_hour = parseInt(curr_time[0]);
+        var curr_min = parseInt(curr_time[1]);
+        var lun_hour = parseInt(lun_time[0]);
+        var lun_min = parseInt(lun_time[1]);
+        if(curr[1]=="P.M.") {curr_hour += 12;}
+        if(lun[1]=="P.M.") {lun_hour += 12;}
+        var rem_hour = lun_hour - curr_hour;
+        var rem_min = lun_min - curr_min; 
+        console.log(rem_min);
+        if(rem_hour<0) rem_hour += 24;
+        if(rem_min<0) {rem_min += 60;
+            rem_hour -= 1;
+        }
+        document.getElementById("findRem").innerHTML = "Hours remaining for lunch: "+rem_hour+" hours and "+rem_min + "minutes.";
+    </script>
+</body>
+</html>

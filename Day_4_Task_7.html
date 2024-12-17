@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, 
+                 initial-scale=1.0">
+    <title>Read File in Browser</title>
+</head>
+
+<body>
+    <input type="file" id="fileInput" />
+    <script>
+        
+function findFirstWord(words, seen, index ) {
+    if (index >= words.length) {
+        return null; 
+    }
+
+    const word = words[index];
+    if (seen[word] !== undefined) {
+        return {
+            word: word,
+            firstIndex: seen[word],
+            nextIndex: index
+        };
+    }
+
+    seen[word] = index;
+    return findFirstWord(words, seen, index + 1);
+}
+        document.getElementById('fileInput')
+            .addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function () {
+                    const content = reader.result;
+                    const words = content.split(" ");
+                    for(var i= 0 ; i < words.length ; i++) {
+                        result = findFirstWord(words[i], {} , 0)
+                        console.log("Word : "+result.word ,"First Index: " + result.firstIndex,"Next Index: " + result.nextIndex);
+                        
+                    }      
+                };
+
+            
+
+                reader.readAsText(file, 'utf-8');
+            });
+    </script>
+</body>
+
+</html>

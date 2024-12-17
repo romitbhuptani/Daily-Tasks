@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="convert"></p>
+
+    <script>
+        function convert(str) {
+            var string = [];
+            for (var i = 0; i < str.length; i++) {
+                if(str.charCodeAt(i) %2 == 0 ){
+                    string.push(str[i].toUpperCase());
+                }
+                else{
+                    string.push(str[i].toLowerCase());
+                }
+            }
+            return string.join('');
+        }
+        var str = convert(prompt("Enter a string : "));
+        document.getElementById("convert").innerHTML = "The string after conversion is : "  + str;
+    </script>
+</body>
+</html>

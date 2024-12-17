@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="ans"></p>
+    <script>
+        function convertNum(num1,num2)
+{
+    return Math.floor(num1/Math.pow(2,num2));
+}     
+        num1 = parseInt(prompt("Enter first number"));
+        num2 = parseInt(prompt("Enter second number"));
+        var ans = convertNum(num1,num2);
+        document.getElementById("ans").innerHTML = "After applying right shift operator: "  + ans;
+    </script>
+</body>
+</html>

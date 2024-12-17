@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="consNumbers"></p>
+    <script>
+        function consNumbers(str) {
+            var arr = [];
+            for (var i = 0; i < str.length; i++) {
+                arr.push(parseInt(str[i]));
+            }
+
+            var newarr = [];
+            var group = ''; 
+            
+            for (var i = 0; i < arr.length; i++) {
+                
+                group += arr[i];
+
+                if (i === arr.length - 1 || arr[i] + 1 !== arr[i + 1]) {
+                    newarr.push(group); 
+                    group = '';
+                }
+            }
+
+            return newarr;
+        }
+
+        var result = consNumbers(prompt("Enter a number:"));
+        document.getElementById("consNumbers").innerHTML = "The groups of numbers are: " + result.join(' ');
+    </script>
+</body>
+</html>

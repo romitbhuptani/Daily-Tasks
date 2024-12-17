@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="singleDigit"></p>
+    <script>
+        function singleDigit(num1,num2){
+            var num = num1 + num2;
+            while(num % 10 != num){
+                copyNum = num;
+                var mul = 1;
+                while(copyNum>0){
+                    var lastDigit = copyNum % 10;
+                    mul  *= lastDigit;
+                    copyNum = Math.floor(copyNum/10);
+                }
+                num = mul;
+            }
+            return num;
+        }
+        var singleDigit = singleDigit(parseInt(prompt("Enter first number")),parseInt(prompt("Enter second number")));
+        document.getElementById("singleDigit").innerHTML = "The number after converting into single digit is : " + singleDigit;
+    </script>
+</body>
+</html>

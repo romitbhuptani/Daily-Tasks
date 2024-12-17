@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="check"></p>
+    <script>
+        function checkNum(num){
+            revNum = 0;
+            orNum = parseInt(num);
+            while(orNum>0){
+                var rem = orNum % 10;
+                revNum = revNum * 10 + rem;
+                orNum = Math.floor(orNum / 10);
+            }
+            return parseInt(num)<revNum;
+        }
+        var check = checkNum((prompt("Enter a number")));
+        document.getElementById("check").innerHTML = "After swapping the number is greater: "  + check;
+    </script>
+</body>
+</html>

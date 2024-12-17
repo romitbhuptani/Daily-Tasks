@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="change"></p>
+    <script>
+        function movingLetters(str){
+        var capital = [];
+        var small = [];
+        for(var i=0; i<str.length;i++){
+            if(str.charAt(i)>='A' && str.charAt(i)<='Z'){
+                capital.push(str.charAt(i));
+            }
+            else{
+                small.push(str.charAt(i));
+            }
+        }
+        console.log(capital,small)
+        return capital.join('')+small.join('');
+    }
+
+    var str=movingLetters(prompt("Enter a string."));
+    document.getElementById("change").innerHTML="After moving capital letters to the front the string is: "+str;
+    </script>
+</body>
+</html>
