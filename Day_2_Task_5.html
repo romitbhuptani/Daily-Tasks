@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        // Import the functions you need from Firebase SDKs
+    
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  import {getDatabase,ref,set} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCQxgZkQcDOvl1C3EZE30My5JH0wyPPpD0",
+    authDomain: "mvclouds-17c3e.firebaseapp.com",
+    projectId: "mvclouds-17c3e",
+    storageBucket: "mvclouds-17c3e.firebasestorage.app",
+    messagingSenderId: "617466508778",
+    appId: "1:617466508778:web:bc7a3a27f09af4d5f1ae93",
+    measurementId: "G-E0S6M7Q8RN"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+        
+        function submitForm(event) {
+            event.preventDefault(); 
+
+            const firstname = document.getElementById("fname").value;
+            const lastname = document.getElementById("lname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("pass").value;
+            const confirmPassword = document.getElementById("cpass").value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const hobbies = Array.from(document.querySelectorAll('input[name="hobbies"]:checked')).map(input => input.value);
+            const income = document.querySelector("select").value;
+            const age = document.getElementById("age").value;
+            const bio = document.getElementById("bio").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            const userRef = ref(db, 'users/' + email.replace('.', ','));
+            set(userRef, {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password, 
+                gender: gender,
+                hobbies: hobbies,
+                income: income,
+                age: age,
+                bio: bio
+            })
+            .then(() => {
+                alert("Account created successfully!");
+            })
+            .catch(error => {
+                console.error("Error creating account: ", error);
+                alert("Error creating account.");
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector("form").addEventListener("submit", submitForm);
+        });
+    </script>
+</head>
+<body>
+    <div style="background-color: rgb(161, 225, 161); position: relative; height: 700px; width: 1000px;">
+        <div style="position: absolute;top: 2%;left: 2%;background-color: white; height: 675px;width: 970px;">
+            <form method="post">
+                <div style="border: 1px solid black;background-color: rgb(188, 183, 183);width: 100%;height:20% ;text-align: center;font-size: 30px;"><b>Create Account</b></div>
+                <div style="background-color: rgb(252, 252, 252); width: 100%;height: 100%;">
+                    <table cellspacing="5" cellpadding="5" style="width: 100%;height:100%;">
+                        <tr>
+                            <td><label for="fname"><span style="color: rgb(33, 246, 175);"><b>First name *</b></span></label></td>
+                            <td><label for="lname"><span style="color: rgb(33, 246, 175);"><b>Last name</b></label></span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="firstname" id="fname" placeholder="enter your first name" style="width: 100%;" required></td>
+                            <td><input type="text" name="lastname" id="lname" placeholder="enter your last name" style="width: 100%;"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email"><span style="color: rgb(33, 246, 175);"><b>Email *</b></span></label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="email" placeholder="enter your email" id="email" style="width: 100%;" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="pass"><span style="color: rgb(33, 246, 175);"><b>Password *</b></span></label></td>
+                            <td><label for="cpass"><span style="color: rgb(33, 246, 175);"><b>Confirm Password</b></label></span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" name="password" id="pass" placeholder="enter your password" style="width: 100%;" required></td>
+                            <td><input type="password" name="conf_password" id="cpass" placeholder="enter your password again" style="width: 100%;" required></td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: rgb(33, 246, 175);"><b>Gender</b></span></td>
+                            <td><span style="color: rgb(33, 246, 175);"><b>Hobbies</b></span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label><input type="radio" name="gender" value="male">Male</label>
+                                <label><input type="radio" name="gender" value="female">Female</label>
+                            </td>
+                            <td>
+                                <label><input type="checkbox" name="music" value="music">Music</label>
+                                <label><input type="checkbox" name="sports" value="sports">Sports</label>
+                                <label><input type="checkbox" name="travel" value="travel">Travel</label>
+                                <label><input type="checkbox" name="movies" value="movies">Movies</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: rgb(33, 246, 175);"><b>Source of income</b></span></td>
+                            <td><span style="color: rgb(33, 246, 175);"><b>Income</b></span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select>
+                                    <option value="Employed">Employed</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Business">Business</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="range" min="5000" max="100000" style="width: 40%;"> <button type="button" style="background-color: rgb(33, 246, 175);border: none; position: absolute;">20K</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: rgb(33, 246, 175);"><b>Update Profile Picture</b></span></td>
+                            <td><label for="age"><span style="color: rgb(33, 246, 175);"><b>Age</b></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="file" name="file"></td>
+                            <td><input type="number" name="age" id="age"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><label for="bio"><span style="color: rgb(33, 246, 175);"><b>Bio</b></span></label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="width: 100%;">
+                                <textarea name="bio" id="bio" rows="8" cols="20" style="width: 100%;"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="position: relative;border: 1px solid black;background-color: rgb(188, 183, 183);width: 100%;height:40px;">
+                        <div style="position: absolute;left: 80%;padding-top: 5px;">
+                            <button type="submit" style="background-color: rgb(33, 246, 175);font-size: 20px;border: none;"><span style="color: white;">Create</span></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
