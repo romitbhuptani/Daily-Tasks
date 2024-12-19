@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Link Table Viewer</title>
+    
+</head>
+<body>
+
+<div >
+    <h2>Image Link Table Viewer</h2>
+    <input type="file" id="csvFileInput" accept=".csv">
+    <table id="imageTable" rules="all" border="3">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.getElementById("csvFileInput").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const csvData = e.target.result;
+                const rows = csvData.split("\n").map(row => row.trim()).filter(row => row.length > 0);
+                createTable(rows);
+            };
+            reader.readAsText(file);
+       
+    });
+
+    function createTable(rows) {
+        const tableBody = document.getElementById("imageTable").getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = '';
+
+        rows.forEach(row => {
+            const columns = row.split(",");
+            if (columns.length > 0) {
+                const imageUrl = columns[0].trim();
+                
+                const rowHTML = `
+                    <tr>
+                        <td><a download="custom-filename.jpg" href=${imageUrl}" title="ImageName">
+    <img alt="ImageName" src="${imageUrl}"></a></td>
+                        <td>
+                            <a href="${imageUrl}" download>Download</a>
+
+                        </td>
+                    </tr>
+                `;
+                
+                tableBody.innerHTML += rowHTML;
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
