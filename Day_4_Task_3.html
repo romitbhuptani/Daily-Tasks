@@ -6,11 +6,22 @@
     <title>Document</title>
 </head>
 <body>
+    <input type="date" id="date" name="date">
+    <button type="button" onclick="calcDate()">Calculate</button>
     <p id="timeremaining"></p>
     <script>
+        function calcDate() {
         var currdate = new Date();
-        var enterdate = new Date(prompt("Enter date"));
-        document.getElementById("timeremaining").innerHTML ="The days remaining are : " + Math.ceil((enterdate.getTime()-currdate.getTime())/(1000*60*60*24));
+        var enterdate = new Date(document.getElementById("date").value);
+        var remainingdate = Math.ceil((enterdate.getTime()-currdate.getTime())/(1000*60*60*24));
+        if(remainingdate < 0){
+            document.getElementById("timeremaining").innerHTML = "Invalid date. Please select a future date.";
+            
+        }
+        else{
+        document.getElementById("timeremaining").innerHTML ="The days remaining are : " + remainingdate;
+        }
+    }
     </script>
 </body>
 </html>
