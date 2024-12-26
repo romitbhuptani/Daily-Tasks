@@ -1,42 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script>
-        function validateForm(e) {
-            e.preventDefault();
-            var pass = document.getElementById("pass").value;
-            
-            if(pass.length<8){
-                alert("Please enter a password greater than 8 characters")
-            }
-            
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 15px;
+      background-color: antiquewhite;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid black;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: black;
+    }
+
+    .input-field {
+      position: relative;
+      border-bottom: 2px solid black;
+      margin: 15px 0;
+    }
+
+    .input-field label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      color: black;
+      font-size: 16px;
+      pointer-events: none;
+      transition: 0.15s ease;
+    }
+
+    .input-field input {
+      width: 100%;
+      height: 40px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: black;
+    }
+
+    .input-field input:focus~label,
+    .input-field input:valid~label {
+      font-size: 0.8rem;
+      top: 10px;
+      transform: translateY(-120%);
+    }
+
+    .forget {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 25px 0 35px 0;
+      color: black;
+      font-size: 0.9rem;
+    }
+
+    #remember {
+      accent-color: black;
+    }
+
+    .wrapper a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .wrapper a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      background: black;
+      color: white;
+      font-weight: 600;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: 16px;
+      border: 2px solid transparent;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      color: black;
+      border-color: black;
+      background: white;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 20px;
+      color: black;
+      font-size: 0.9rem;
+    }
+  </style>
+  <script>
+    function validateIdentity(event) {
+      event.preventDefault();
+      var email = document.getElementById("email").value;
+      var pass = document.getElementById("pass").value;
+      if (email !== localStorage.getItem("email")) {
+        alert("Email is not valid.");
+        return false;
+      }
+      if( pass !== localStorage.getItem("pass")){
+        alert("Password is not valid.");
+        return false;
+      }
+      setTimeout(() => {
+        window.location.href = "Day_4_Task_2_Welcome.html";
+      }, 100);
+    }
+  </script>
 </head>
 <body>
-    <div class="container">
+  <div class="wrapper">
+    <form action="Day_4_Task_2_Welcome.html" onsubmit="validateIdentity(event)">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="text" required id="email">
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" required id="pass">
+        <label>Enter your password</label>
+      </div>
+      <div class="forget">
         
-            <form class="row g-3" action="Day_4_Task_2_Welcome.html">
-                <div class="container ">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="Enter your email: ">
-                </div>
-                <div class="container">
-                  <label for="pass" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="pass" placeholder="Enter your password">
-                </div>
-                <div class="container">
-                    <input type="submit" class="btn btn-primary" value="Submit">
-                </div>
-              
-        </form>
-    </div><br><br>
-    <div class="container">
-        <button type="button" class="btn btn-info btn-outline-primary" ><a href="Day_4_Task_2_Register.html" class="text-white text-decoration-none">Don't have an account? Sign Up Here. </a></button>
-    </div>
+        <a href="ForgotPassword.html">Forgot password?</a>
+      </div>
+      <button type="submit">Log In</button>
+      <div class="register">
+        <p>Don't have an account? <a href="Register.html">Register</a></p>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
