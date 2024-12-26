@@ -7,13 +7,38 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <h1>THIS IS WELCOME PAGE</h1>
-    </div>
-    <br>
-    <br>
-    <div class="container">
-        <button type="button" class="btn btn-primary"><a href="Day_4_Task_2_Login.html" class="text-decoration-none text-white">Logout</a></button>
-    </div>
+    <div class="container" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 50%;height: 40%;">
+        <div class="container" style="padding: 20px;" >
+            <table cellspacing="15" cellpadding="15" rules="all" border="3" >
+                <tr>
+                    <td>First Name: </td>
+                    <td id="fname"></td>
+                </tr>
+                <tr>
+                    <td>Last Name: </td>
+                    <td id="lname"></td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td id="email"></td>
+                </tr>
+                <tr>
+                    <td>Phone number: </td>
+                    <td id="phone"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center"> <div class="container">
+                        <button type="button" class="btn btn-primary"><a href="Day_4_Task_2_Login.html" class="text-decoration-none text-white">Logout</a></button>
+                    </div></td>
+                </tr>
+            </table>
+        </div>
+   
+    <script>
+        document.getElementById("fname").innerHTML = localStorage.getItem('fname');
+        document.getElementById("lname").innerHTML = localStorage.getItem('lname');
+        document.getElementById("email").innerHTML = localStorage.getItem('email');
+        document.getElementById("phone").innerHTML = localStorage.getItem('phone');
+    </script>
 </body>
 </html>
