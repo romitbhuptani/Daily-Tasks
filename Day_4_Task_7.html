@@ -5,29 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, 
                  initial-scale=1.0">
-    <title>Read File in Browser</title>
 </head>
-
 <body>
     <input type="file" id="fileInput" />
     <script>
         
-function findFirstWord(words, seen, index ) {
-    if (index >= words.length) {
+function findFirstWord(words, seen, ind ) {
+    if (ind >= words.length) {
         return null; 
     }
 
-    const word = words[index];
+    const word = words[ind];
     if (seen[word] !== undefined) {
         return {
             word: word,
             firstIndex: seen[word],
-            nextIndex: index
+            nextIndex: ind
         };
     }
 
-    seen[word] = index;
-    return findFirstWord(words, seen, index + 1);
+    seen[word] = ind;
+    return findFirstWord(words, seen, ind + 1);
 }
         document.getElementById('fileInput')
             .addEventListener('change', (event) => {
@@ -35,16 +33,26 @@ function findFirstWord(words, seen, index ) {
                 const reader = new FileReader();
 
                 reader.onload = function () {
-                    const content = reader.result;
-                    const words = content.split(" ");
+                    var content = reader.result;
+                    var lines = content.split('\n');
+                    str = []
+                    for (var i = 0; i < lines.length; i++) {
+                        if(lines[i].length>1) {
+                        str.push(lines[i].trim());
+                    }
+                }
+                str = str.join(' ');
+                words = str.split(' ');
+                    
                     for(var i= 0 ; i < words.length ; i++) {
-                        result = findFirstWord(words[i], {} , 0)
-                        console.log("Word : "+result.word ,"First Index: " + result.firstIndex,"Next Index: " + result.nextIndex);
-                        
-                    }      
-                };
-
-            
+                     
+                         result = findFirstWord(words[i], {} , 0)
+                         if(result != null) {
+                         console.log("Word : "+result.word ,"First Index: " + result.firstIndex,"Next Index: " + result.nextIndex);
+                         }
+                     }      
+                 }
+                
 
                 reader.readAsText(file, 'utf-8');
             });
